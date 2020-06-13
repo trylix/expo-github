@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 
 import useUserQuery from '~/hooks/useUserHooks';
 
+import Error from '~/components/Error';
 import Loading from '~/components/Loading';
 import Repositories from '~/components/Repositories';
 import UserContext from '~/providers/user';
@@ -29,7 +30,7 @@ const User: React.FC = () => {
 
   if (loading) return <Loading />;
 
-  if (error) return <h1>{`Error! ${error.message}`}</h1>;
+  if (error) return <Error error={error} />;
 
   const { user }: UserData = data;
 
