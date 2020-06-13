@@ -24,6 +24,7 @@
   },
   "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
   "rules": {
+    "@typescript-eslint/no-explicit-any": 0,
     "@typescript-eslint/explicit-function-return-type": [
       "error",
       {
@@ -45,6 +46,9 @@
     ],
     "import/prefer-default-export": 0,
     "import/no-named-as-default": 0,
+    "import/no-extraneous-dependencies": 0,
+    "no-unused-expressions": 0,
+    "no-console": 0,
     "no-param-reassign": 0,
     "camelcase": 0
   },
