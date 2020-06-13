@@ -75,7 +75,7 @@ export default createGlobalStyle`
   *:focus {
     outline: 0;
   }
-  html, body, #root {
+  html, body {
     height: 100vh;
   }
   body {
@@ -97,5 +97,10 @@ export default createGlobalStyle`
   }
   button {
     cursor: pointer;
+  }
+  #root {
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 60px;
   }
 `;

@@ -11,7 +11,7 @@ export const Container = styled.header`
 `;
 
 export const Nav = styled.nav`
-  padding: 26px 12px;
+  padding: 46px 12px;
 `;
 
 export const Logo = styled(logoSvg)``;
@@ -19,7 +19,7 @@ export const Logo = styled(logoSvg)``;
 export const SearchGroup = styled.div`
   display: flex;
   align-items: center;
-  padding: 40px 12px;
+  padding: 10px 12px 40px;
 `;
 
 export const SearchInput = styled(Input).attrs({

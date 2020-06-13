@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaSearch } from 'react-icons/fa';
-import { Form } from '@unform/core';
+import { Form } from '@unform/web';
+
+import UserContext from '~/providers/user';
 
 import {
   Nav,
@@ -11,9 +13,15 @@ import {
   SearchButton,
 } from './styles';
 
+interface FormProps {
+  [key: string]: string;
+}
+
 const Header: React.FC = () => {
-  function handleSubmit(data: any): void {
-    // TODO: search
+  const { setLogin } = useContext(UserContext);
+
+  function handleSubmit({ login }: FormProps): void {
+    setLogin(login);
   }
 
   return (

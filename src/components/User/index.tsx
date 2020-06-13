@@ -1,4 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import useUserQuery from '~/hooks/useUserHooks';
+
+import Loading from '~/components/Loading';
+import Repositories from '~/components/Repositories';
+import UserContext from '~/providers/user';
+import { UserData } from '~/types';
 
 import {
   Container,
@@ -7,65 +14,52 @@ import {
   UserStats,
   StatsItem,
   UserInfo,
-  Body,
-  Title,
-  RepositoryItem,
 } from './styles';
 
+interface ApolloQuery {
+  fetchMoreResult: UserData;
+}
+
 const User: React.FC = () => {
+  const { login } = useContext(UserContext);
+
+  const { loading, error, data } = useUserQuery(login || '');
+
+  if (!login) return <></>;
+
+  if (loading) return <Loading />;
+
+  if (error) return <h1>{`Error! ${error.message}`}</h1>;
+
+  const { user }: UserData = data;
+
   return (
-    <Container>
+    <Container key={user.id}>
       <Header>
         <UserAvatar>
-          <img
-            className="avatar"
-            src="https://avatars3.githubusercontent.com/u/16746134?s=460&u=42f9f35afeda788f621c00b6d7757eb8679ff67c&v=4"
-            alt="Usuário"
-          />
+          <img className="avatar" src={user.avatarUrl} alt={user.name} />
         </UserAvatar>
         <UserInfo>
-          <h3 className="name">Brendenson Andrade</h3>
-          <span className="login">trylix</span>
-          <p className="bio">may the force be with you</p>
+          <h3 className="name">{user.name}</h3>
+          <span className="login">{user.login}</span>
+          <p className="bio">{user.bio}</p>
         </UserInfo>
         <UserStats>
           <StatsItem>
             <span className="item">Repositórios</span>
-            <span className="amount">50</span>
+            <span className="amount">{user.repositories.totalCount}</span>
           </StatsItem>
           <StatsItem>
             <span className="item">Seguidores</span>
-            <span className="amount">50</span>
+            <span className="amount">{user.followers.totalCount}</span>
           </StatsItem>
           <StatsItem>
             <span className="item">Seguindo</span>
-            <span className="amount">50</span>
+            <span className="amount">{user.following.totalCount}</span>
           </StatsItem>
         </UserStats>
       </Header>
-      <Body>
-        <Title>Repositórios</Title>
-        <ul className="repositories">
-          <RepositoryItem>
-            <a className="item" href="/#">
-              <span className="name">trylix/nubank-clone</span>
-              <span className="description">
-                Clone do aplicativo da NuBank para Android desenvolvido com
-                Flutter
-              </span>
-            </a>
-          </RepositoryItem>
-          <RepositoryItem>
-            <a className="item" href="/#">
-              <span className="name">trylix/nubank-clone</span>
-              <span className="description">
-                Clone do aplicativo da NuBank para Android desenvolvido com
-                Flutter
-              </span>
-            </a>
-          </RepositoryItem>
-        </ul>
-      </Body>
+      <Repositories />
     </Container>
   );
 };
