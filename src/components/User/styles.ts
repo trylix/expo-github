@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 40vw;
-  max-width: 512px;
+  width: 512px;
   display: flex;
   flex-direction: column;
   background-color: #ffffff;

@@ -26,7 +26,7 @@ export const SearchInput = styled(Input).attrs({
   type: 'text',
   placeholder: 'Busque por um usuário',
 })`
-  width: 30vw;
+  width: 412px;
   background: #ffffff;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 6px 0px 0px 6px;
